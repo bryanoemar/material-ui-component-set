@@ -7,10 +7,9 @@
   jsx: (() => {
     const { Button } = window.MaterialUI.Core;
 
-    const ComponentInTrueFlow = <Button>interaction</Button>
-    const ComponentInFalseFlow = <Button>no interaction</Button>
+    const theSameComponent = <Button>{(options.trueFlow ? "interaction" : "no interaction" )}</Button>
 
-    return <div>{(options.trueFlow ? ComponentInTrueFlow : ComponentInFalseFlow )}</div>
+    return <div>{theSameComponent}</div>
 
   })(),
   styles: B => t => {
