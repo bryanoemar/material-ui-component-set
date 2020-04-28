@@ -5,12 +5,10 @@
   allowedTypes: [],
   orientation: 'VERTICAL',
   jsx: (() => {
-    const { Button } = window.MaterialUI.Core;
-
-    const theSameComponent = <Button>{(options.trueFlow ? "interaction" : "no interaction" )}</Button>
-
-    return <div>{theSameComponent}</div>
-
+    const ComponentInTrueFlow = <button>interaction</button>
+    const ComponentInFalseFlow = <button>no interaction</button>
+    
+    return <div>{(options.trueFlow ? ComponentInTrueFlow : ComponentInFalseFlow )}</div>
   })(),
   styles: B => t => {
   },
