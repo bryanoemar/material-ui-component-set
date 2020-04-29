@@ -91,7 +91,7 @@
 
         const isDev = env === 'dev';
 
-        const { anchor, isOpenOnStart } = options;
+        const { anchor, isOpenOnStart, isVisibleInDev } = options;
         
         const initialState = {
           ...{
@@ -150,7 +150,7 @@
                                   if(index === contentIndex) return child;
                                 })
 
-        const otherChildren =   React.Children.map(children, (child, index) => {
+        const listChildren =   React.Children.map(children, (child, index) => {
                                   if(index !== contentIndex) return child;
                                 })
 
@@ -193,7 +193,7 @@
               </IconButton>
             </div>
             <Divider />
-            {otherChildren}
+            {listChildren}
           </Drawer>
           <main
             className={clsx(_classes.content, {
@@ -253,7 +253,12 @@
 
         return (
           <>
-            { isDev ? <div><p>Drawer</p>{children}</div> : drawerComponentWithAppBar}
+            { isDev ? 
+              <div>
+                <p>Drawer</p>
+                {isVisibleInDev ? <div>{listChildren}</div> : ''}
+                <div>{contentChild}</div>
+              </div> : drawerComponentWithAppBar}
           </>
         );
       })()}
