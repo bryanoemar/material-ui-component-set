@@ -37,7 +37,7 @@
         {
           type: 'VARIABLE',
           label: 'Title',
-          key: 'panelTitle',
+          key: 'drawerTitle',
           value: ['Title'],
         },
         {
