@@ -8,8 +8,9 @@
     <div className={classes.panel}>
       {(() => {
         const { makeStyles, useTheme } = window.MaterialUI.Core;      
+        const { anchor, isOpenOnStart, isVisibleInDev, drawerTitle, width } = options;
 
-        const drawerWidth = 240;
+        const drawerWidth = Number(width);
         const useStyles = makeStyles(theme => ({
           root: {
             display: 'flex',

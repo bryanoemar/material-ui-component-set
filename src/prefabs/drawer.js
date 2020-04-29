@@ -35,6 +35,12 @@
           },
         },
         {
+          value: '240',
+          label: 'Drawer width (pixels)',
+          key: 'width',
+          type: 'TEXT',
+        },
+        {
           type: 'VARIABLE',
           label: 'Title',
           key: 'drawerTitle',
