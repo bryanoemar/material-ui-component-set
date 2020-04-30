@@ -92,8 +92,6 @@
 
         const isDev = env === 'dev';
 
-        const { anchor, isOpenOnStart, isVisibleInDev, drawerTitle } = options;
-        
         const initialState = {
           ...{
             top: false,
