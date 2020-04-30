@@ -7,7 +7,7 @@
   jsx: (
     <div className={classes.panel}>
       {(() => {
-        const { makeStyles, useTheme } = window.MaterialUI.Core;      
+        const { makeStyles, useTheme } = window.MaterialUI.Core;
         const { anchor, isOpenOnStart, isVisibleInDev, drawerTitle, width } = options;
 
         const drawerWidth = Number(width);
@@ -67,15 +67,11 @@
             marginLeft: 0,
           },
         }))
-        
+
         const { env } = B
-        const { Drawer, 
-                Button, 
-                List, 
-                Divider, 
-                ListItem, 
-                ListItemIcon, 
-                ListItemText,
+        const { Drawer,
+                Button,
+                Divider,
                 AppBar,
                 CssBaseline,
                 Toolbar,
@@ -84,11 +80,9 @@
               } = window.MaterialUI.Core;
 
 
-        const { Menu: MenuIcon,                
+        const { Menu: MenuIcon,
                 ChevronLeft: ChevronLeftIcon,
-                ChevronRight: ChevronRightIcon,
-                Inbox: InboxIcon,
-                Mail: MailIcon } = window.MaterialUI.Icons
+                ChevronRight: ChevronRightIcon } = window.MaterialUI.Icons
 
         const isDev = env === 'dev';
 
@@ -101,7 +95,7 @@
           },
           ...{[anchor]: isOpenOnStart}
         }
-        
+
         const [state, setState] = useState(initialState);
         const [open, setOpen] = useState(isOpenOnStart)
 
@@ -111,13 +105,13 @@
         useEffect(() => {
           B.defineFunction("handleOpenDrawer", e => {
             e.preventDefault();
-        
+
             handleOpenDrawer(e, anchor)
           });
 
           B.defineFunction("handleCloseDrawer", e => {
             e.preventDefault();
-        
+
             handleCloseDrawer(e)
           });
         }, []);
@@ -139,7 +133,7 @@
           if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
           }
-      
+
           setState({ ...state, [anchor]: open });
         };
 
@@ -229,7 +223,7 @@
 
         return (
           <>
-            { isDev ? 
+            { isDev ?
               <div>
                 <p>Drawer</p>
                 {isVisibleInDev ? <div>{listChildren}</div> : ''}
