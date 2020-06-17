@@ -25,6 +25,7 @@
       adornmentPosition,
       property,
       propertyLabelOverride,
+      isBasicLabel,
     } = options;
 
     const {
@@ -52,6 +53,7 @@
     const labelText = property ? propertyLabel : label;
 
     const actionInput = getActionInput(actionInputId);
+    const isOutlined = variant === 'outlined';
 
     const changeHandler = event => {
       const {
@@ -70,7 +72,7 @@
     };
 
     let InputCmp = Input;
-    if (variant === 'outlined') {
+    if (isOutlined) {
       InputCmp = OutlinedInput;
     } else if (variant === 'filled') {
       InputCmp = FilledInput;
@@ -113,7 +115,15 @@
         margin={margin}
         error={error}
       >
-        {labelText && <InputLabel>{labelText}</InputLabel>}
+        {labelText && (
+          <InputLabel
+            className={
+              isBasicLabel && isOutlined ? 'MuiInputLabel-static' : null
+            }
+          >
+            {labelText}
+          </InputLabel>
+        )}
         <InputCmp
           name={actionInput && actionInput.name}
           value={currentValue}
@@ -156,9 +166,11 @@
     );
 
     return isDev ? (
-      <div className={classes.root}>{TextFieldCmp}</div>
+      <div className={[classes.root, classes.inputContainer].join(' ')}>
+        {TextFieldCmp}
+      </div>
     ) : (
-      TextFieldCmp
+      <div className={classes.inputContainer}>{TextFieldCmp}</div>
     );
   })(),
   styles: () => () => ({
@@ -167,6 +179,23 @@
         fullWidth ? 'block' : 'inline-block',
       '& > *': {
         pointerEvents: 'none',
+      },
+    },
+    inputContainer: {
+      '& .MuiInputLabel-root.MuiInputLabel-static': {
+        position: 'static',
+        transform: 'none',
+        marginBottom: '8px',
+      },
+      '& .MuiFormControl-static.MuiOutlinedInput-input': {
+        padding: '13px 14px 14px',
+        height: 'auto',
+      },
+      '& fieldset': {
+        '& legend': {
+          display: 'none',
+        },
+        top: 0,
       },
     },
   }),
